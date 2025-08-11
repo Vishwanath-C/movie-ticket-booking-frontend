@@ -1,4 +1,4 @@
-import axios from "axios";
+import apiClient from "../src/api";
 import { useEffect, useState } from "react";
 import { getCurrentUser } from "../src/utils/auth";
 import TicketList from "./TicketList";
@@ -28,7 +28,7 @@ const MyBookings = () => {
         const user = getCurrentUser();
 
         try {
-            const response = await axios.get(
+            const response = await apiClient.get(
                 "/tickets/get-tickets",
                 {
                     headers: {

@@ -1,4 +1,4 @@
-import axios from "axios";
+import apiClient from "../src/api";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { getCurrentUser } from "../src/utils/auth";
@@ -110,7 +110,7 @@ const ShowSeatLayout = () => {
     const handleBookSeats = async () => {
         try {
             console.log("MOVIESHOW ID : ", movieShow.id, selectedSeats);
-            const response = await axios.post('/tickets/create-ticket',
+            const response = await apiClient.post('/tickets/create-ticket',
                 {
                     showSeatRequestDtos: selectedSeats, movieShowId: movieShow.id,
                     totalPrice, email: user.sub

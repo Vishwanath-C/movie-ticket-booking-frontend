@@ -1,4 +1,4 @@
-import axios from "axios";
+import apiClient from "../src/api";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -13,7 +13,7 @@ const Register = () => {
         e.preventDefault();
         try {
             console.log("In register");
-            await axios.post('/auth/register', {
+            await apiClient.post('/auth/register', {
                 firstName, lastName, email, password
             });
             console.log("After");

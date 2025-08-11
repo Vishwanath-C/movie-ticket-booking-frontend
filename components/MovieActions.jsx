@@ -1,4 +1,4 @@
-import axios from "axios";
+import apiClient from "../src/api";
 import { useEffect, useState } from "react";
 import MovieList from "./MovieList";
 import ShowSeatLayout from "./ShowSeatLayout";
@@ -19,7 +19,7 @@ const MovieActions = () => {
         e.preventDefault();
 
         try {
-            await axios.post('/movies/create-movie', {
+            await apiClient.post('/movies/create-movie', {
                 title,
                 description,
                 duration
@@ -41,7 +41,7 @@ const MovieActions = () => {
     const handleShowMovies = async () => {
         console.log('Inside');
         try {
-            const response = await axios.get('/movies/all-movies', {
+            const response = await apiClient.get('/movies/all-movies', {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

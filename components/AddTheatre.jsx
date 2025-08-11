@@ -1,5 +1,7 @@
 import { useState } from "react";
-import axios from "axios";
+// import axios from "axios";
+import apiClient from '../src/api';
+
 
 const AddTheatre = () => {
     const [name, setName] = useState('');
@@ -20,7 +22,7 @@ const AddTheatre = () => {
         // const parsedNormalColCount = parseInt(normalColCount, 10);
      
         try {
-            const response = await axios.post('/theatres/create-theatre', {
+            const response = await apiClient.post('/theatres/create-theatre', {
                 name,
                 location,
                 // goldRowCount: parsedGoldRowCount,

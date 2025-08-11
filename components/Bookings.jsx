@@ -1,4 +1,4 @@
-import axios from "axios";
+import apiClient from "../src/api";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import ShowSeatLayout from "./ShowSeatLayout";
@@ -32,7 +32,7 @@ const Bookings = () => {
         setSelectedDate(date);
 
         try {
-            const response = await axios.get(`/movieshows/movies/${movieId}/date/${date}`, {
+            const response = await apiClient.get(`/movieshows/movies/${movieId}/date/${date}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

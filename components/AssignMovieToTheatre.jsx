@@ -1,4 +1,4 @@
-import axios from "axios";
+import apiClient from "../src/api";
 import { useEffect, useState } from "react";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 // import { showTimes } from "./CreateMovieShow";
@@ -33,7 +33,7 @@ const AssignMovieToTheatre = () => {
         // e.preventDefault();
 
         try {
-            const response = await axios.get('/theatres/get-all-theatres', {
+            const response = await apiClient.get('/theatres/get-all-theatres', {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -50,7 +50,7 @@ const AssignMovieToTheatre = () => {
         // e.preventDefault();
 
         try {
-            const response = await axios.get('/movies/all-movies', {
+            const response = await apiClient.get('/movies/all-movies', {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -91,7 +91,7 @@ const AssignMovieToTheatre = () => {
 
         try {
             console.log("Selected movie : ", selectedMovie);
-            const response = await axios.post('/movie-assignments/create-assignment', {
+            const response = await apiClient.post('/movie-assignments/create-assignment', {
                 theatreId: selectedTheatre.id, movieId: selectedMovie.id, numberOfShowsPerDay : showsPerDay,
                  showTimings : showTimes, startDate, endDate
             }, {

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import apiClient from '../src/api';
 import { jwtDecode } from 'jwt-decode';
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
@@ -14,7 +14,7 @@ const Login = ({ setIsLoggedIn }) => {
         e.preventDefault();
 
         try {
-            const res = await axios.post('/auth/login', { email, password });
+            const res = await apiClient.post('/auth/login', { email, password });
             const token = res.data.accessToken;
 
             if (!token) {

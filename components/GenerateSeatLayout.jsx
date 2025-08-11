@@ -1,4 +1,4 @@
-import axios from "axios";
+import apiClient from "../src/api";
 import { useState } from "react";
 import { Button, Container, Dropdown, DropdownButton } from "react-bootstrap";
 
@@ -17,7 +17,7 @@ const GenerateSeatLayout = () => {
     const fetchTheatres = async () => {
         try {
             console.log("In fetch theatres");
-            const response = await axios.get("/theatres/get-all-theatres", {
+            const response = await apiClient.get("/theatres/get-all-theatres", {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -32,7 +32,7 @@ const GenerateSeatLayout = () => {
     const fetchSeatTypes = async () => {
         try {
             console.log("In seat types");
-            const response = await axios.get('/seats/get-seat-types', {
+            const response = await apiClient.get('/seats/get-seat-types', {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -48,7 +48,7 @@ const GenerateSeatLayout = () => {
 
     const handleSubmit = async (e) => {
         try {
-            const response = await axios.post(`/seats/generate_seats/theatres/${selectedTheatre.id}`,
+            const response = await apiClient.post(`/seats/generate_seats/theatres/${selectedTheatre.id}`,
                  [{seatType: selectedSeatType, price, rowCount, seatsPerRow}] , {
                 headers: {
                     Authorization: `Bearer ${token}`,
